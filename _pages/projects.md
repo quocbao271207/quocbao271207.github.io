@@ -5,7 +5,7 @@ permalink: /projects/
 description: A showcase of my AI models, backend development, and research.
 nav: true
 nav_order: 2
-display_categories: [work, fun]
+display_categories: [work, research]
 horizontal: false
 ---
 
