@@ -1,3 +1,8 @@
+// Disable browser scroll restoration to prevent jumping on refresh
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
 //A Function to ease retrieval of DOM elements
 elem = (x) => {
   return document.getElementById(x);
