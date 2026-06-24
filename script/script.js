@@ -73,11 +73,10 @@ window.addEventListener("scroll", function () {
 //auto typing texts
 var typed = new Typed(".typing", {
   strings: [
-    "Software Engineer",
-    "Frontend Developer",
-    "Technical Supporter",
-    "Freelancer",
-    "Youtuber",
+    "AI Engineer",
+    "Data Science Student",
+    "Backend Developer",
+    "Machine Learning Enthusiast"
   ],
 
   typeSpeed: 100,
@@ -240,9 +239,9 @@ const handleFilter = (elem, x) => {
 
 //Project Counter part
 var count_all = document.querySelector("span.count_all"),
-  count_landing = document.querySelector("span.count_landing"),
-  count_api = document.querySelector("span.count_api"),
-  count_mobile = document.querySelector("span.count_mobile"),
+  count_landing = document.querySelector("span.count_ai"),
+  count_api = document.querySelector("span.count_backend"),
+  count_mobile = document.querySelector("span.count_data"),
   count_personal = document.querySelector("span.count_personal"),
   count_formal = document.querySelector("span.count_formal"),
   options = document.querySelectorAll(".custom_select option");
@@ -253,10 +252,10 @@ const count_projects = () => {
     .then((data) => {
       let all_projects = data.length,
         landing_projects = data.filter(
-          (project) => project.type == "landing_page"
+          (project) => project.type == "ai_model"
         ).length,
-        api_projects = data.filter((project) => project.type == "api").length,
-        mobile_projects = data.filter((project) => project.type == "mobile").length,
+        api_projects = data.filter((project) => project.type == "backend").length,
+        mobile_projects = data.filter((project) => project.type == "data_science").length,
         personal_projects = data.filter(
           (project) => project.type == "personal_project"
         ).length,
@@ -280,9 +279,9 @@ const count_projects = () => {
       count_formal.innerText = `${formal_projects}+`;
 
       options[0].textContent = `All (${all_projects}+)`;
-      options[1].textContent = `Landing Pages (${landing_projects}+)`;
-      options[2].textContent = `API's (${api_projects}+)`;
-      options[3].textContent = `Mobile (${mobile_projects}+)`;
+      options[1].textContent = `AI Models (${landing_projects}+)`;
+      options[2].textContent = `Backend & APIs (${api_projects}+)`;
+      options[3].textContent = `Data Science (${mobile_projects}+)`;
       options[4].textContent = `Personal Projects (${personal_projects}+)`;
       options[5].textContent = `Formal Projects (${formal_projects}+)`;
     });
