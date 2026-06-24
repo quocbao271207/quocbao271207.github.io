@@ -52,15 +52,25 @@ cv:
           - Proposed a stability-driven feature selection framework to address ambiguity among confusable human activities.
           - Integrated EEG and EMG-IMU signals to improve discriminative representation and classification robustness.
 
-      - company: Children's Hospital 1
-        position: Medical AI Research Project
+      - company: Handwash Recognition Project
+        position: AI Developer
         location: ""
         start_date: 2026
         end_date: Ongoing
-        summary: Multimodal Surgical Hand Hygiene Assessment (Video + UV)
+        summary: Developing and deploying a handwashing recognition model.
         highlights:
-          - Proposed a multimodal framework integrating video and UV imaging for surgical hand hygiene assessment.
-          - Developing dual-branch models (3D CNN/Transformer + U-Net) for action recognition and coverage estimation.
+          - Built an action recognition model for hand hygiene assessment.
+          - Deployed the model for real-time inference and evaluation.
+
+      - company: Sankit
+        position: Backend & GPS Model Developer
+        location: ""
+        start_date: 2026
+        end_date: Ongoing
+        summary: Developing models related to GPS tracking and backend architecture.
+        highlights:
+          - Designed and implemented the backend infrastructure.
+          - Developed GPS-related predictive models to optimize tracking and routing.
 
       - company: Hokkaido University (Collaboration)
         position: Healthcare Simulation Project
@@ -111,11 +121,11 @@ cv:
       - name: Tech/Tools
         level: ""
         icon: fa-solid fa-code
-        keywords: "Python, C++, SQL, Git (GitHub/GitLab), Claude Code"
+        keywords: "Python, C++, SQL, Git (GitHub/GitLab), Docker, Node.js, Claude Code"
       - name: AI/Data
         level: ""
         icon: fa-solid fa-brain
-        keywords: "Machine Learning (Scikit-learn, XGBoost), Deep Learning, Natural Language Processing (NLP)"
+        keywords: "Machine Learning (Scikit-learn, XGBoost), Deep Learning, Natural Language Processing (NLP), Large Language Models (LLMs), Computer Vision"
 
     Languages:
       - name: Vietnamese
