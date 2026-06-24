@@ -94,20 +94,13 @@ fetch(url)
     // console.log(sorted_array);
     sorted_array.forEach((project) => {
       project_container.innerHTML += `
-		<div class="${project.type == 'mobile' ? 'p_cards mobile' : 'p_cards'}">
-			<div class="${project.type == 'mobile' ? 'p_image mobile' : 'p_image'}">
-				<img src="${project.screenshot}" width="100%" height="100%" alt="${project.name} image">
-			</div>
-      <div class="info">
-        <div class="text_part">
-          <h4>${project.title}</h4>
-          <p>${project.info}</p>
-        </div>
-      
-        <div class="btn_part">
-          <a href="${project.link}" target="_blank" title="${project.title}"><button class="btn"> ${project.type == 'mobile' ? 'Download <i class="fa fa-android"></i>' : 'View Live <i class="fa fa-globe"></i>'}</button></a>
-        </div>
-    </div>
+		<div class="p_cards">
+          <div class="info">
+            <div class="text_part">
+              <h4>${project.title}</h4>
+              <p>${project.info}</p>
+            </div>
+          </div>
 		</div>
 		`;
     });
@@ -144,21 +137,13 @@ const handleFilter = (elem, x) => {
         filtered_sorted.forEach((project) => {
           loading_screen.style.display = "none";
           project_container.innerHTML += `
-				<div class="${project.type == 'mobile' ? 'p_cards mobile' : 'p_cards'}">
-			    <div class="${project.type == 'mobile' ? 'p_image mobile' : 'p_image'}">
-						<img src="${project.screenshot}" width="100%" height="100%" alt="${project.name} image">
-					</div>
-          <div class="info">
-            <div class="text_part">
-              <h4>${project.title}</h4>
-              <p>${project.info}</p>
-            </div>
-						
-            <div class="btn_part">
-              <a href="${project.link}" target="_blank" title="${project.title}"><button class="btn">${project.type == 'mobile' ? 'Download <i class="fa fa-android"></i>' : 'View Live <i class="fa fa-globe"></i>'}</button></a>
-            </div>
-          </div>
-         
+				<div class="p_cards">
+                  <div class="info">
+                    <div class="text_part">
+                      <h4>${project.title}</h4>
+                      <p>${project.info}</p>
+                    </div>
+                  </div>
 				</div>
 				`;
         });
@@ -166,20 +151,13 @@ const handleFilter = (elem, x) => {
         sorted_array.forEach((project) => {
           loading_screen.style.display = "none";
           project_container.innerHTML += `
-				<div class="${project.type == 'mobile' ? 'p_cards mobile' : 'p_cards'}">
-			    <div class="${project.type == 'mobile' ? 'p_image mobile' : 'p_image'}">
-						<img src="${project.screenshot}" width="100%" height="100%" alt="${project.name} image">
-					</div>
-          <div class="info">
-            <div class="text_part">
-              <h4>${project.title}</h4>
-              <p>${project.info}</p>
-            </div>
-          
-            <div class="btn_part">
-              <a href="${project.link}" target="_blank" title="${project.title}"><button class="btn">${project.type == 'mobile' ? 'Download <i class="fa fa-android"></i>' : 'View Live <i class="fa fa-globe"></i>'}</button></a>
-            </div>
-        </div>
+				<div class="p_cards">
+                  <div class="info">
+                    <div class="text_part">
+                      <h4>${project.title}</h4>
+                      <p>${project.info}</p>
+                    </div>
+                  </div>
 				</div>
 				`;
         });
