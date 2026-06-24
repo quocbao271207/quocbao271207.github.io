@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "screenshot": "images/project_sankit.png",
+    "title": "Sankit GPS & Backend",
+    "info": "Developing models related to GPS tracking and backend architecture. Designed and implemented the backend infrastructure and developed GPS-related predictive models to optimize tracking and routing.",
+    "link": "#",
+    "type": "api"
+  },
+  {
+    "id": 2,
+    "screenshot": "images/project_handwash.png",
+    "title": "Handwash Action Recognition",
+    "info": "Built an action recognition model for hand hygiene assessment. Deployed the model for real-time inference and evaluation of surgical handwashing techniques.",
+    "link": "#",
+    "type": "landing_page"
+  },
+  {
+    "id": 3,
+    "screenshot": "images/project_har.png",
+    "title": "Multimodal HAR (EEG & EMG-IMU)",
+    "info": "Proposed a stability-driven feature selection framework to address ambiguity among confusable human activities. Integrated EEG and EMG-IMU signals to improve discriminative representation.",
+    "link": "#",
+    "type": "ecommerce"
+  },
+  {
+    "id": 4,
+    "screenshot": "images/project_estesim.png",
+    "title": "ESTE-SIM Interactive Simulator",
+    "info": "Developing an interactive healthcare simulation system modeling patient physiological responses. Collaborating with Hokkaido University to ensure clinical realism and accuracy.",
+    "link": "#",
+    "type": "landing_page"
+  }
+]
