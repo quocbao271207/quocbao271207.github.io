@@ -121,7 +121,7 @@ cv:
       - name: Tech/Tools
         level: ""
         icon: fa-solid fa-code
-        keywords: "Python, C++, SQL, Git (GitHub/GitLab), Docker, Node.js, Claude Code"
+        keywords: "Python, C++, SQL, Git (GitHub/GitLab), Docker, Node.js, AI Coding Assistants"
       - name: AI/Data
         level: ""
         icon: fa-solid fa-brain
