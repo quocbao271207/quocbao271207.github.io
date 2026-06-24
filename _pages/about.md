@@ -32,3 +32,8 @@ Hi, I am Trinh Quoc Bao!
 I am currently a first-year Data Science student at Ho Chi Minh City University of Technology (HCMUT) with a deep passion for Artificial Intelligence and model architecture. My primary focus lies in designing, training, and optimizing advanced machine learning models. I am driven by the challenge of translating complex algorithms into robust, real-world solutions that create meaningful impact.
 
 Feel free to browse my projects and reach out if you'd like to collaborate!
+
+<style>
+.navbar-brand.title { font-weight: bold !important; }
+.navbar-brand.title span.font-weight-bold { font-weight: 300 !important; }
+</style>

@@ -9,3 +9,8 @@ description: My Curriculum Vitae
 toc:
   sidebar: left
 ---
+
+<style>
+.navbar-brand.title { font-weight: bold !important; }
+.navbar-brand.title span.font-weight-bold { font-weight: 300 !important; }
+</style>
