@@ -3,61 +3,11 @@ elem = (x) => {
   return document.getElementById(x);
 };
 
-//For Loading page
-var preloader = elem("preloader");
-var counter = elem("counter");
-var text = elem("text");
-
-loader = () => {
-  let count = setInterval(function () {
-    var c = parseInt(counter.innerText);
-    counter.innerText = `${(++c).toString()}`;
-
-    if (c == 100) {
-      clearInterval(count);
-      counter.classList.add("hide");
-      // $(text).fadeIn(1000);
-      text.classList.add("fadeIn");
-      // $(text).fadeOut(2000);
-      text.classList.add("fadeOut");
-
-      preloader.classList.add("active");
-      //Get Visitor's name
-      var visitor = document.querySelectorAll("#visitor");
-
-      Swal.fire({
-        title: "What name shall I call you?",
-        input: "text",
-        inputValue: "My Guest",
-        allowOutsideClick: false,
-        showCancelButton: true,
-        inputValidator: (value) => {
-          if (!value) {
-            return "You need to write your Name!";
-          }
-        },
-      }).then((result) => {
-        if (result.isConfirmed) {
-          var name = result.value;
-          if (name === "") {
-            for (var i = 0; i < visitor.length; i++) {
-              visitor[i].innerText = "My Guest";
-            }
-          } else {
-            for (var i = 0; i < visitor.length; i++) {
-              visitor[i].innerText = name;
-            }
-          }
-        } else {
-          for (var i = 0; i < visitor.length; i++) {
-            visitor[i].innerText = "My Guest";
-          }
-        }
-      });
-    }
-  }, 40);
-};
-loader();
+// Set default visitor name
+var visitor = document.querySelectorAll("#visitor");
+for (var i = 0; i < visitor.length; i++) {
+  visitor[i].innerText = "Guest";
+}
 
 //Sticky menu part
 var header = elem("header");
