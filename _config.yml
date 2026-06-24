@@ -2,10 +2,10 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: blank # the website title (if blank, full name will be used instead)
-first_name: TRINH QUOC
+title: "TRINH QUOC BAO" # the website title (if blank, full name will be used instead)
+first_name: <span class="font-weight-normal">TRINH QUOC</span>
 middle_name: ""
-last_name: BAO
+last_name: <span class="font-weight-bold">BAO</span>
 contact_note: >
   Feel free to reach out to me via email.
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
