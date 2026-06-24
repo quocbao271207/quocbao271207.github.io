@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: First-year Data Science student at HCMUT
+subtitle: First-year Data Science student at HCMUT | AI & Machine Learning
 
 profile:
   align: right
@@ -17,19 +17,18 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 
 announcements:
-  enabled: true # includes a list of news items
+  enabled: false # includes a list of news items
   scrollable: true # adds a vertical scroll bar if there are more than 3 news items
   limit: 5 # leave blank to include all the news in the `_news` folder
 
 latest_posts:
-  enabled: true
+  enabled: false
   scrollable: true # adds a vertical scroll bar if there are more than 3 new posts items
   limit: 3 # leave blank to include all the blog posts
 ---
 
 Hi, I am Trinh Quoc Bao!
 
-I am currently a first-year Data Science student at Ho Chi Minh City University of Technology (HCMUT).
-I have a strong interest in machine learning, human activity recognition, and medical AI. I am passionate about research, problem-solving, and applying artificial intelligence in real-world applications to create meaningful impact.
+I am currently a first-year Data Science student at Ho Chi Minh City University of Technology (HCMUT) with a deep passion for Artificial Intelligence and model architecture. My primary focus lies in designing, training, and optimizing advanced machine learning models. I am driven by the challenge of translating complex algorithms into robust, real-world solutions that create meaningful impact.
 
 Feel free to browse my projects and reach out if you'd like to collaborate!
