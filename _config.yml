@@ -2,7 +2,7 @@
 # Site settings
 # -----------------------------------------------------------------------------
 
-title: TRINH QUOC <span class="font-weight-bold">BAO</span> # the website title (if blank, full name will be used instead)
+title: blank # the website title (if blank, full name will be used instead)
 first_name: TRINH QUOC
 middle_name: ""
 last_name: BAO
