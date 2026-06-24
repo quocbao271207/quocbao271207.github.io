@@ -1071,6 +1071,7 @@ textarea:valid ~ .line1:before {
   list-style-type: none;
   display: block;
   padding: 0.5rem 0rem;
+  position: relative;
 }
 #sidebar_items ul li a {
   border-radius: 50%;
@@ -1084,95 +1085,29 @@ textarea:valid ~ .line1:before {
   position: relative;
   transition: 0.2s linear;
 }
-#sidebar_items ul li:nth-child(1):after {
+#sidebar_items ul li:after {
   content: "";
   position: absolute;
-  top: 4%;
+  top: 50%;
+  transform: translateY(-50%);
   left: 100%;
-  width: 100%;
-  height: 10%;
+  width: auto;
   color: lime;
   font-size: 15px;
   transition: all 0.2s linear;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+}
+#sidebar_items ul li:hover:after {
+  left: 120%;
+  opacity: 1;
 }
 #sidebar_items ul li:nth-child(1):hover:after {
   content: "Facebook";
-  left: 110%;
-}
-#sidebar_items ul li:nth-child(2):after {
-  content: "";
-  position: absolute;
-  top: 20%;
-  left: 100%;
-  width: 100%;
-  height: 10%;
-  color: lime;
-  font-size: 15px;
-  transition: all 0.2s linear;
 }
 #sidebar_items ul li:nth-child(2):hover:after {
   content: "Instagram";
-  left: 110%;
-}
-#sidebar_items ul li:nth-child(3):after {
-  content: "";
-  position: absolute;
-  top: 37%;
-  left: 100%;
-  width: 100%;
-  height: 10%;
-  color: lime;
-  font-size: 15px;
-  transition: all 0.2s linear;
-}
-#sidebar_items ul li:nth-child(3):hover:after {
-  content: "YouTube";
-  left: 110%;
-}
-#sidebar_items ul li:nth-child(4):after {
-  content: "";
-  position: absolute;
-  top: 54%;
-  left: 100%;
-  width: 100%;
-  height: 10%;
-  color: lime;
-  font-size: 15px;
-  transition: all 0.2s linear;
-}
-#sidebar_items ul li:nth-child(4):hover:after {
-  content: "Linkedin";
-  left: 110%;
-}
-#sidebar_items ul li:nth-child(5):after {
-  content: "";
-  position: absolute;
-  top: 70%;
-  left: 100%;
-  width: 100%;
-  height: 10%;
-  color: lime;
-  font-size: 15px;
-  transition: all 0.2s linear;
-}
-#sidebar_items ul li:nth-child(5):hover:after {
-  content: "Github";
-  left: 110%;
-}
-#sidebar_items ul li:nth-child(6):after {
-  content: "";
-  position: absolute;
-  top: 87%;
-  left: 100%;
-  width: 100%;
-  height: 10%;
-  color: lime;
-  font-size: 15px;
-  transition: all 0.2s linear;
-}
-#sidebar_items ul li:nth-child(6):hover:after {
-  content: "WhatsApp";
-  left: 110%;
 }
 
 #sidebar_items ul li:nth-child(1) a {
