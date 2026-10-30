@@ -151,7 +151,7 @@ const PROJECTS = [
       { src: "assets/img/hokkaido-live.jpg", alt: "Live session view with the procedure step strip" },
       { src: "assets/img/hokkaido-setup.jpg", alt: "Session setup screen" },
     ],
-    links: [{ label: "View repository", href: "https://github.com/Khanghcmut/Hokkaido_project" }],
+    links: [],
   },
   {
     title: "Bone-Age X-ray",
