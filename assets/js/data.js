@@ -1,315 +1,411 @@
-/* Portfolio content. Each project renders as a card + case-study modal (see main.js). */
+/* Kit contents. Every item is real: recordings, screenshots, photos and figures from the projects.
+   Text fields are { en, vi }. Charts are drawn by charts.js from the numbers below (sources noted). */
 
-const CATEGORIES = [
-  { id: "all", label: "All work" },
-  { id: "medical", label: "Medical AI" },
-  { id: "research", label: "Research & competitions" },
-  { id: "product", label: "Products" },
-  { id: "speech", label: "Speech & NLP" },
-  { id: "vision", label: "Computer vision" },
-];
+const KIT = {
+  projects: [
+    {
+      tag: "TQB-101",
+      key: "onevoice",
+      status: "prototype",
+      statusNote: { en: "Research prototype · not for clinical use", vi: "Nguyên mẫu nghiên cứu · không dùng lâm sàng" },
+      size: "xl",
+      title: "OneVoice — MediVoice Edge",
+      line: {
+        en: "Offline VI ⇄ EN medical speech translation on a Qualcomm QCS6490.",
+        vi: "Dịch giọng nói y khoa Việt ⇄ Anh ngoại tuyến trên Qualcomm QCS6490.",
+      },
+      meta: { en: "OneVoice AI Challenge 2026 · Saigon AI Hub × Qualcomm · solo", vi: "OneVoice AI Challenge 2026 · Saigon AI Hub × Qualcomm · làm một mình" },
+      cover: { video: "assets/video/onevoice-demo.webm", poster: "assets/img/onevoice-demo.jpg" },
+      summary: {
+        en: "A hands-free interpreter for clinics with unreliable internet. ASR → MT → TTS runs on the device; a clinical safety layer checks drug names, doses, numbers and negation before anything is spoken. Every training result is bound to verifiable evidence before release.",
+        vi: "Phiên dịch rảnh tay cho phòng khám mạng chập chờn. ASR → MT → TTS chạy ngay trên thiết bị; lớp an toàn lâm sàng kiểm tra tên thuốc, liều, con số và phủ định trước khi phát ra loa. Mọi kết quả huấn luyện phải gắn bằng chứng kiểm chứng được trước khi phát hành.",
+      },
+      did: {
+        en: ["Audited a 31,929-file FLAC corpus with leakage and manifest gates.", "LoRA rank sweep on PhoWhisper-small: eval WER 43.19% → 28.57%.", "Fair, resumable bake-off of NLLB-200 and M2M100 adapters; the lead NLLB-600M candidate scores BLEU 39.30 EN→VI and 34.10 VI→EN on the project's validation split.", "Fail-closed runtime: unsafe output is blocked, playback needs confirmation."],
+        vi: ["Kiểm định 31.929 file FLAC với cổng chống rò rỉ dữ liệu và manifest.", "Quét hạng LoRA trên PhoWhisper-small: WER đánh giá 43,19% → 28,57%.", "So tài công bằng, chạy tiếp được giữa adapter NLLB-200 và M2M100; ứng viên NLLB-600M dẫn đầu đạt BLEU 39,30 Anh→Việt và 34,10 Việt→Anh trên tập validation của dự án.", "Runtime an toàn mặc định: chặn đầu ra nguy hiểm, phát âm thanh cần xác nhận."],
+      },
+      honest: {
+        en: "Research prototype — not for clinical use. The locked evaluation (WER 28.0%) has not met the ≤ 19% clinical gate, and the safety layer still let some wrong translations through in testing. The recording runs on a laptop CPU with base PhoWhisper-small ASR (the medical checkpoint was not on this machine); on-device numbers come from Qualcomm AI Hub profiles.",
+        vi: "Nguyên mẫu nghiên cứu — không dùng cho lâm sàng. Bài đánh giá khoá (WER 28,0%) chưa đạt ngưỡng ≤ 19%, và khi thử nghiệm lớp an toàn vẫn để lọt vài câu dịch sai. Video chạy trên CPU laptop với ASR PhoWhisper-small bản gốc (checkpoint y khoa không có trên máy này); số liệu trên thiết bị lấy từ Qualcomm AI Hub.",
+      },
+      chart: "onevoiceWer",
+      media: [
+        { video: "assets/video/onevoice-demo.webm", poster: "assets/img/onevoice-demo.jpg", cap: { en: "Research prototype — not for clinical use. Recorded locally (37 s): typed VI→EN and EN→VI, a safety-gate block, then a real Vietnamese audio clip through ASR → MT", vi: "Nguyên mẫu nghiên cứu — không dùng lâm sàng. Quay trên máy (37 giây): gõ Việt→Anh và Anh→Việt, cổng an toàn chặn một câu, rồi một đoạn âm thanh tiếng Việt thật qua ASR → MT" } },
+        { img: "assets/img/onevoice-demo.jpg", cap: { en: "VI→EN: paracetamol dosing, 3.1 s on CPU", vi: "Việt→Anh: liều paracetamol, 3,1 giây trên CPU" } },
+        { img: "assets/img/onevoice-en-vi.jpg", cap: { en: "EN→VI: amoxicillin dosing, 2.3 s on CPU", vi: "Anh→Việt: liều amoxicillin, 2,3 giây trên CPU" } },
+        { img: "assets/img/onevoice-gate.jpg", cap: { en: "Safety gate blocks an output with a missing clinical term", vi: "Cổng an toàn chặn đầu ra thiếu thuật ngữ lâm sàng" } },
+        { img: "assets/img/onevoice-audio.jpg", cap: { en: "Real audio clip (public sample) → ASR → English", vi: "Đoạn âm thanh thật (mẫu công khai) → ASR → tiếng Anh" } },
+        { img: "assets/img/qcs6490-board.jpg", cap: { en: "Target hardware: Qualcomm QCS6490", vi: "Phần cứng đích: Qualcomm QCS6490" } },
+      ],
+      stack: ["PyTorch", "PEFT / LoRA", "PhoWhisper", "NLLB-200", "M2M100", "Piper TTS", "Qualcomm QNN"],
+      links: [{ label: "GitHub", href: "https://github.com/quocbao271207/Onevoice" }],
+    },
+    {
+      tag: "TQB-102",
+      key: "viegrand",
+      status: "prototype",
+      statusNote: { en: "Prototype · synthetic-speech eval", vi: "Nguyên mẫu · đo trên giọng tổng hợp" },
+      size: "phone",
+      title: "VieGrand",
+      line: { en: "Home-care for older people: AI camera, watch, family app and a robot.", vi: "Chăm sóc người cao tuổi tại nhà: camera AI, đồng hồ, app gia đình và robot." },
+      meta: { en: "Startup team · 2nd Prize Qualcomm Hack The Challenge 2026", vi: "Đội khởi nghiệp · Giải Nhì Qualcomm Hack The Challenge 2026" },
+      cover: { video: "assets/video/viegrand-app-health.mp4", poster: "assets/img/viegrand-family.jpg" },
+      summary: {
+        en: "VieGrand detects falls and anomalies at home, confirms the person's state, alerts family and tracks health trends while sensitive data stays on local Edge AI. Bảo built the on-device “Vy ơi” Vietnamese wake word and validated the data behind the health-risk models.",
+        vi: "VieGrand phát hiện té ngã và bất thường tại nhà, xác nhận tình trạng, báo cho gia đình và theo dõi xu hướng sức khoẻ, dữ liệu nhạy cảm xử lý tại chỗ bằng Edge AI. Bảo xây mô hình đánh thức “Vy ơi” chạy trên thiết bị và kiểm định dữ liệu cho mô hình nguy cơ sức khoẻ.",
+      },
+      did: {
+        en: ["Shipped wake-word model (conversation v3), voice-disjoint 5-fold: precision 96.19%, recall 88.06%, false-positive rate 1.46%.", "0 / 128 false triggers on loud overlapping-speech stress audio; median desktop latency 44.4 ms.", "Shipped as ONNX inside the Android app.", "Team won 2nd Prize at Qualcomm Hack The Challenge 2026 (QVIC)."],
+        vi: ["Mô hình wake word đang ship (conversation v3), 5-fold tách giọng: precision 96,19%, recall 88,06%, tỉ lệ kích nhầm 1,46%.", "0 / 128 lần kích nhầm trên âm thanh nhiều người nói chồng; độ trễ trung vị trên desktop 44,4 ms.", "Đóng gói ONNX trong app Android.", "Đội đoạt Giải Nhì Qualcomm Hack The Challenge 2026 (QVIC)."],
+      },
+      honest: {
+        en: "Wake-word numbers come from synthetic (AI-generated) speech; on unseen voices with people talking over the wake word, recall drops to about 22–36%. Not yet field-validated. App recordings use seeded demo data.",
+        vi: "Số liệu wake word đo trên giọng nói tổng hợp (AI tạo); với giọng chưa gặp và có người nói chồng lên, recall giảm còn khoảng 22–36%. Chưa kiểm định thực địa. Video app dùng dữ liệu demo.",
+      },
+      chart: "wakeword",
+      media: [
+        { video: "assets/video/viegrand-app-health.mp4", poster: "assets/img/viegrand-health.jpg", cap: { en: "App recording: elder health overview to medication", vi: "Quay app: tổng quan sức khoẻ đến lịch thuốc" } },
+        { video: "assets/video/viegrand-family.mp4", poster: "assets/img/viegrand-family.jpg", cap: { en: "App recording: family dashboard to a relative's health (demo data)", vi: "Quay app: bảng gia đình đến sức khoẻ người thân (dữ liệu demo)" } },
+        { video: "assets/video/viegrand-vy.mp4", poster: "assets/img/viegrand-vy.jpg", cap: { en: "App recording: “Vy” listening state (demo state)", vi: "Quay app: trạng thái “Vy” đang nghe (trạng thái demo)" } },
+        { video: "assets/video/viegrand-web.webm", poster: "assets/img/viegrand-web.jpg", cap: { en: "VieGrand website, recorded from the local build", vi: "Website VieGrand, quay từ bản chạy trên máy" } },
+        { video: "assets/video/viegrand-technician.webm", poster: "assets/img/viegrand-technician.jpg", cap: { en: "Technician app web build: jobs, checklist, camera check (mock data)", vi: "App kỹ thuật viên bản web: công việc, checklist, kiểm tra camera (dữ liệu giả lập)" } },
+        { img: "assets/img/viegrand-robot.jpg", cap: { en: "VieGrand home robot", vi: "Robot VieGrand" } },
+        { img: "assets/img/viegrand-demo-judges.jpg", cap: { en: "Demoing to judges", vi: "Trình diễn cho ban giám khảo" } },
+      ],
+      stack: ["Keyword spotting", "ONNX Runtime", "Android", "Python", "Edge AI"],
+      links: [{ label: "VIEGRAND-PRODUCT", href: "https://github.com/VIEGRAND-PRODUCT" }],
+    },
+    {
+      tag: "TQB-103",
+      key: "englishhouse",
+      status: "verified",
+      size: "wide",
+      title: "English House",
+      line: { en: "Learning platform: exam bank, CEFR vocabulary and games.", vi: "Nền tảng học: ngân hàng đề, từ vựng CEFR và trò chơi." },
+      meta: { en: "EdTech team · student web", vi: "Đội EdTech · web học viên" },
+      cover: { img: "assets/img/englishhouse-spelling.jpg" },
+      summary: {
+        en: "Student portal, teacher/admin app and a shared API for an English centre: exam authoring in 12 formats with Paper, Quiz and IELTS modes, CEFR A1–C2 vocabulary with five study modes, and two learning games.",
+        vi: "Cổng học viên, app giáo viên/quản trị và API dùng chung cho trung tâm tiếng Anh: soạn đề 12 dạng với chế độ Paper, Quiz, IELTS; từ vựng CEFR A1–C2 với năm chế độ học; hai trò chơi học tập.",
+      },
+      did: {
+        en: ["Contributed to the student web portal (Next.js 16, React 19).", "Exam runner, vocabulary decks and Spelling Squadron game flows.", "End-to-end tests ahead of release."],
+        vi: ["Tham gia xây cổng web học viên (Next.js 16, React 19).", "Luồng làm bài, bộ thẻ từ vựng và trò chơi Spelling Squadron.", "Kiểm thử end-to-end trước khi phát hành."],
+      },
+      media: [
+        { img: "assets/img/englishhouse-spelling.jpg", cap: { en: "Spelling Squadron", vi: "Spelling Squadron" } },
+        { img: "assets/img/englishhouse-exam.jpg", cap: { en: "Exam runner", vi: "Màn làm bài" } },
+        { img: "assets/img/englishhouse-authoring.jpg", cap: { en: "Teacher exam authoring", vi: "Giáo viên soạn đề" } },
+      ],
+      stack: ["Next.js", "React 19", "TypeScript", "NestJS", "Prisma", "PostgreSQL"],
+      links: [{ label: "English-House-MsVan", href: "https://github.com/English-House-MsVan" }],
+    },
+    {
+      tag: "TQB-104",
+      key: "hokkaido",
+      status: "prototype",
+      size: "wide",
+      title: "Hokkaido ES Coach",
+      line: { en: "Real-time coaching for endotracheal-suction training.", vi: "Huấn luyện hút đờm nội khí quản theo thời gian thực." },
+      meta: { en: "Research collaboration with Hokkaido University · team", vi: "Hợp tác nghiên cứu với ĐH Hokkaido · làm nhóm" },
+      cover: { img: "assets/img/hokkaido-live.jpg" },
+      summary: {
+        en: "Trainees practise airway suctioning while pose estimation and sequence models track each step, check the 15-second-per-suction safety rule and produce an educator-reviewed report. Video never leaves the machine.",
+        vi: "Học viên thực hành hút đờm; mô hình ước lượng tư thế và chuỗi thời gian theo dõi từng bước, kiểm tra quy tắc an toàn 15 giây mỗi lần hút và tạo báo cáo để giảng viên duyệt. Video không rời khỏi máy.",
+      },
+      did: {
+        en: ["YOLOv8n-Pose → LSTM/TCN → HMM pipeline exported to ONNX.", "12-configuration experiment matrix; best hybrid TCN reaches 71.20% (7 classes).", "Self-hosted LLM (Qwen2.5-7B on vLLM) for rubric-grounded feedback."],
+        vi: ["Pipeline YOLOv8n-Pose → LSTM/TCN → HMM xuất ONNX.", "Ma trận 12 cấu hình thí nghiệm; TCN lai tốt nhất đạt 71,20% (7 lớp).", "LLM tự host (Qwen2.5-7B trên vLLM) để nhận xét theo rubric."],
+      },
+      chart: "hokkaido",
+      media: [
+        { img: "assets/img/hokkaido-live.jpg", cap: { en: "Live session with the step strip", vi: "Phiên trực tiếp với thanh bước" } },
+        { img: "assets/img/hokkaido-report.jpg", cap: { en: "Post-session review", vi: "Báo cáo sau phiên" } },
+        { img: "assets/img/hokkaido-setup.jpg", cap: { en: "Session setup", vi: "Thiết lập phiên" } },
+      ],
+      stack: ["YOLOv8-Pose", "LSTM / TCN", "HMM", "ONNX Runtime", "vLLM", "Docker"],
+      links: [],
+    },
+    {
+      tag: "TQB-105",
+      key: "sankit",
+      status: "verified",
+      size: "photo",
+      title: "Sankit",
+      line: { en: "Backend and GPS models for tracking and routing.", vi: "Backend và mô hình GPS cho theo dõi và định tuyến." },
+      meta: { en: "Bách Khoa Innovation 2026 · Round 2", vi: "Bách Khoa Innovation 2026 · Vòng 2" },
+      cover: { img: "assets/img/sankit-pitch.jpg" },
+      summary: {
+        en: "Bảo designed the backend and built GPS-based predictive models to improve tracking and routing, then pitched the business model with the team at Bách Khoa Innovation 2026.",
+        vi: "Bảo thiết kế backend và xây mô hình dự đoán dựa trên GPS để cải thiện theo dõi và định tuyến, rồi cùng đội pitch mô hình kinh doanh tại Bách Khoa Innovation 2026.",
+      },
+      did: {
+        en: ["Backend services and data model.", "GPS / spatial predictive models.", "Pitched in Round 2 of Bách Khoa Innovation 2026 (18 Jul 2026)."],
+        vi: ["Dịch vụ backend và mô hình dữ liệu.", "Mô hình dự đoán GPS / không gian.", "Pitch tại Vòng 2 Bách Khoa Innovation 2026 (18/07/2026)."],
+      },
+      media: [
+        { video: "assets/video/sankit.mp4", poster: "assets/img/sankit-pitch.jpg", cap: { en: "Team clip from the competition", vi: "Clip của đội tại cuộc thi" } },
+        { img: "assets/img/sankit-pitch.jpg", cap: { en: "Pitching the business model", vi: "Thuyết trình mô hình kinh doanh" } },
+        { img: "assets/img/sankit-round2.jpg", cap: { en: "Bách Khoa Innovation 2026 — Round 2", vi: "Bách Khoa Innovation 2026 — Vòng 2" } },
+      ],
+      stack: ["Backend", "GPS modelling", "SQL"],
+      links: [],
+    },
+    {
+      tag: "TQB-106",
+      key: "viettel",
+      status: "verified",
+      size: "chart",
+      title: "Viettel AI Race 2026",
+      line: { en: "Medical concept extraction linked to RxNorm and ICD-10.", vi: "Trích xuất khái niệm y khoa, liên kết RxNorm và ICD-10." },
+      meta: { en: "Viettel AI Race 2026 · Track 2", vi: "Viettel AI Race 2026 · Bài 2" },
+      cover: { chart: "viettel" },
+      summary: {
+        en: "An offline, GPU-free pipeline for Vietnamese clinical notes: section parsing with exact character offsets, large gazetteers and a rebuilt local scorer that turned every submission into a controlled experiment.",
+        vi: "Pipeline ngoại tuyến, không GPU cho ghi chép lâm sàng tiếng Việt: tách mục với offset ký tự chính xác, từ điển lớn và bộ chấm điểm dựng lại tại máy để mỗi lượt nộp là một thí nghiệm có kiểm soát.",
+      },
+      did: {
+        en: ["Score climbed from 0.08 to 38.65 across logged submissions.", "74,719 ICD-10-CM codes and ~42k RxNorm concepts offline.", "2,217 / 2,217 character offsets exact; ~1 s per batch, no API calls."],
+        vi: ["Điểm tăng từ 0,08 lên 38,65 qua các lượt nộp được ghi sổ.", "74.719 mã ICD-10-CM và ~42 nghìn khái niệm RxNorm chạy ngoại tuyến.", "2.217 / 2.217 offset ký tự chính xác; ~1 giây mỗi lô, không gọi API."],
+      },
+      chart: "viettel",
+      media: [],
+      stack: ["Python", "NER", "Entity linking", "RxNorm", "ICD-10-CM"],
+      links: [{ label: "GitHub", href: "https://github.com/quocbao271207/Viettel" }],
+    },
+    {
+      tag: "TQB-107",
+      key: "handwash",
+      status: "in-progress",
+      statusNote: { en: "No measured results yet", vi: "Chưa có kết quả đo" },
+      size: "spec",
+      title: "Hand-Hygiene Monitor",
+      line: { en: "ICU camera checks of the WHO “5 Moments”.", vi: "Camera ICU kiểm tra “5 thời điểm” của WHO." },
+      meta: { en: "3-person research project · design targets", vi: "Dự án nghiên cứu 3 người · mục tiêu thiết kế" },
+      cover: { spec: true },
+      summary: {
+        en: "A 30 FPS camera feeds three detection modules whose events drive a sterile/unsterile state machine that flags WHO hand-hygiene violations in real time.",
+        vi: "Camera 30 FPS cấp dữ liệu cho ba mô-đun phát hiện; sự kiện của chúng điều khiển máy trạng thái vô khuẩn/không vô khuẩn để cảnh báo vi phạm vệ sinh tay theo WHO.",
+      },
+      did: {
+        en: ["Owned one contact-detection module (YOLO11-pose + BoT-SORT).", "Targets: ≥ 90% precision, ≥ 88% recall at ≥ 30 FPS.", "No measured results yet — the pocket stays honest."],
+        vi: ["Phụ trách một mô-đun phát hiện tiếp xúc (YOLO11-pose + BoT-SORT).", "Mục tiêu: precision ≥ 90%, recall ≥ 88% ở ≥ 30 FPS.", "Chưa có kết quả đo — ghi đúng trạng thái."],
+      },
+      media: [],
+      stack: ["YOLO11-pose", "BoT-SORT", "ST-GCN", "State machine"],
+      links: [{ label: "GitHub", href: "https://github.com/quocbao271207/handwash-master" }],
+    },
+  ],
 
-const PROJECTS = [
-  {
-    title: "OneVoice — MediVoice Edge",
-    meta: "OneVoice AI Challenge 2026 · Solo build",
-    badge: "Featured",
-    featured: true,
-    categories: ["medical", "speech", "research"],
-    short:
-      "Offline Vietnamese ⇄ English medical speech translation (ASR → MT → TTS) engineered to run on a Qualcomm QCS6490 edge device.",
-    summary:
-      "A hands-free interpreter for clinics where the internet is unreliable and hands are busy. I built the whole pipeline alone — data audit, LoRA fine-tuning on rented GPUs, clinical safety gates and an INT8 deployment path — with every result bound to verifiable evidence before it can be released.",
-    highlights: [
-      "Verified a 31,929-file FLAC corpus with strict data-leakage and manifest gates before any training.",
-      "LoRA rank sweep on PhoWhisper-small cut evaluation WER from 43.2% (r8) to 28.6% (full fine-tune).",
-      "M2M100 EN→VI adapter reached BLEU 31.9; NLLB-200 and M2M100 compared in a fair, resumable bake-off.",
-      "Clinical safety layer for drug names, doses, numbers and negation — unsafe output is blocked, not spoken.",
-      "Fail-closed runtime: crash-durable checkpoints, signed evidence bundles and a loopback-only web demo.",
-    ],
-    facts: [
-      ["Role", "Sole developer (265 commits)"],
-      ["Organisers", "Saigon AI Hub × Qualcomm"],
-      ["Target hardware", "Qualcomm QCS6490 · QNN INT8"],
-      ["Status", "Field-test phase, Oct 2026"],
-    ],
-    tags: ["PyTorch", "PEFT / LoRA", "PhoWhisper", "NLLB-200", "M2M100", "Piper TTS", "Qualcomm AI Hub"],
-    images: [
-      { src: "assets/img/onevoice-concept.jpg", alt: "MediVoice hardware concept: handheld VI⇄EN medical translator on a clinic desk" },
-      { src: "assets/img/onevoice-cad.jpg", alt: "Exploded CAD view of the MediVoice device enclosure" },
-      { src: "assets/img/onevoice-bench.jpg", alt: "Benchtop setup with the QCS6490 development kit" },
-    ],
-    links: [{ label: "View repository", href: "https://github.com/quocbao271207/Onevoice" }],
+  research: [
+    {
+      tag: "TQB-201",
+      key: "ieee",
+      status: "verified",
+      size: "paper",
+      title: { en: "IEEE paper — Multimodal HAR", vi: "Bài báo IEEE — HAR đa phương thức" },
+      line: {
+        en: "Disentangling Confusable Actions in Multimodal HAR: a stability-driven feature selection framework for EEG and EMG-IMU.",
+        vi: "Tách các hành động dễ nhầm trong HAR đa phương thức: khung chọn đặc trưng theo độ ổn định cho EEG và EMG-IMU.",
+      },
+      meta: { en: "2026 international conference · IEEE Xplore · co-author", vi: "Hội nghị quốc tế 2026 · IEEE Xplore · đồng tác giả" },
+      cover: { img: "assets/img/ieee-paper-page1.jpg", ar: "1200 / 1553" },
+      summary: {
+        en: "Upper-limb movement-intention recognition from EMG-IMU and EEG under subject-aware and cross-subject evaluation, with a feature-selection framework that keeps only features stable across subjects. Grew out of the ABC Challenge 2026 work on WEAR and NinaPro signals.",
+        vi: "Nhận dạng ý định cử động chi trên từ EMG-IMU và EEG, đánh giá theo từng người và chéo người, với khung chọn đặc trưng chỉ giữ những đặc trưng ổn định giữa các người. Phát triển từ bài ABC Challenge 2026 trên dữ liệu WEAR và NinaPro.",
+      },
+      did: {
+        en: ["Co-authors: Le Hoang Nhat Do, Ngoc Tuong Vy Le, Quoc Thai Le, Quoc Bao Trinh, Phi Hoai Nguyen, Nhat Ngoc Nguyen.", "Published on IEEE Xplore (2026 international conference)."],
+        vi: ["Đồng tác giả: Lê Hoàng Nhật Đô, Lê Ngọc Tường Vy, Lê Quốc Thái, Trịnh Quốc Bảo, Nguyễn Phi Hoài, Nguyễn Nhật Ngọc.", "Xuất bản trên IEEE Xplore (hội nghị quốc tế 2026)."],
+      },
+      media: [
+        { img: "assets/img/ieee-xplore.jpg", cap: { en: "Listing on IEEE Xplore", vi: "Trang bài báo trên IEEE Xplore" } },
+        { img: "assets/img/ieee-paper-page1.jpg", cap: { en: "First page of the paper", vi: "Trang đầu bài báo" } },
+        { img: "assets/img/har-wear.jpg", cap: { en: "WEAR inertial signals explored for the challenge", vi: "Tín hiệu quán tính WEAR khảo sát cho cuộc thi" } },
+      ],
+      stack: ["EEG", "EMG-IMU", "Feature selection", "scikit-learn"],
+      links: [],
+    },
+    {
+      tag: "TQB-202",
+      key: "isas",
+      status: "verified",
+      size: "figure",
+      title: { en: "ISAS 2026 — BLE localisation", vi: "ISAS 2026 — Định vị BLE" },
+      line: { en: "Room-level caregiver localisation from sparse BLE beacons.", vi: "Định vị người chăm sóc theo phòng từ beacon BLE thưa." },
+      meta: { en: "ISAS Challenge 2026 · J. Phys.: Conf. Ser. (IOP) · co-author", vi: "ISAS Challenge 2026 · J. Phys.: Conf. Ser. (IOP) · đồng tác giả" },
+      cover: { img: "assets/img/isas-confusion.jpg", ar: "1400 / 682" },
+      summary: {
+        en: "25 fixed beacons, ~22 rooms, more than 90% of readings missing each second. A class-balanced ExtraTrees with one 11-second centred probability smoothing beat heavier models that failed to transfer across days.",
+        vi: "25 beacon cố định, ~22 phòng, hơn 90% số đo bị thiếu mỗi giây. ExtraTrees cân bằng lớp cùng một lần làm mượt xác suất 11 giây vượt các mô hình nặng hơn vốn không chuyển giao được giữa các ngày.",
+      },
+      did: {
+        en: ["Mean Macro-F1 0.351 → 0.411 across forward-in-time folds.", "Every rejected alternative documented with its evidence."],
+        vi: ["Macro-F1 trung bình 0,351 → 0,411 trên các fold theo chiều thời gian.", "Mọi phương án bị loại đều ghi kèm bằng chứng."],
+      },
+      chart: "isas",
+      media: [
+        { img: "assets/img/isas-confusion.jpg", cap: { en: "Confusion matrices before / after smoothing (Apr 12)", vi: "Ma trận nhầm lẫn trước / sau làm mượt (12/4)" } },
+        { img: "assets/img/isas-macro-f1.jpg", cap: { en: "Macro-F1 per fold: raw argmax vs 11 s smoothing", vi: "Macro-F1 theo fold: argmax gốc và làm mượt 11 giây" } },
+        { img: "assets/img/isas-per-room.jpg", cap: { en: "Per-room F1, fold 2", vi: "F1 theo phòng, fold 2" } },
+        { img: "assets/img/isas-system.jpg", cap: { en: "Challenge data collection (organiser figure)", vi: "Hệ thống thu dữ liệu của cuộc thi (hình của ban tổ chức)" } },
+        { img: "assets/img/isas-floorplan.jpg", cap: { en: "Beacon floor plan (challenge data)", vi: "Sơ đồ beacon (dữ liệu cuộc thi)" } },
+      ],
+      stack: ["scikit-learn", "ExtraTrees", "Time series", "LaTeX"],
+      links: [],
+    },
+    {
+      tag: "TQB-203",
+      key: "boneage",
+      status: "verified",
+      size: "figure",
+      title: { en: "Bone-age X-ray", vi: "Tuổi xương X-quang" },
+      line: { en: "Bone-age regression with external hospital validation.", vi: "Hồi quy tuổi xương, kiểm định ngoài trên dữ liệu bệnh viện." },
+      meta: { en: "Medical imaging research · author", vi: "Nghiên cứu ảnh y khoa · tác giả" },
+      cover: { img: "assets/img/boneage-mae-curve.jpg", ar: "1400 / 856" },
+      summary: {
+        en: "Trained on RSNA, then validated on hospital DICOMs with fixed patient-level splits and paired same-case comparisons, so the numbers survive contact with a real hospital.",
+        vi: "Huấn luyện trên RSNA, rồi kiểm định trên DICOM bệnh viện với chia tách theo bệnh nhân và so sánh cặp cùng ca, để con số đứng vững khi gặp dữ liệu bệnh viện thật.",
+      },
+      did: {
+        en: ["MAE 6.64 months on 12,609 RSNA images (EfficientNet-B0, 5-fold).", "External hospital MAE 9.03 months on 147 standardised cases.", "Paired comparison with 95% confidence intervals. Research use only."],
+        vi: ["MAE 6,64 tháng trên 12.609 ảnh RSNA (EfficientNet-B0, 5-fold).", "MAE ngoài bệnh viện 9,03 tháng trên 147 ca chuẩn hoá.", "So sánh cặp với khoảng tin cậy 95%. Chỉ dùng cho nghiên cứu."],
+      },
+      media: [
+        { img: "assets/img/boneage-mae-curve.jpg", cap: { en: "Raw vs standardised MAE on the same external cases", vi: "MAE ảnh gốc và ảnh chuẩn hoá trên cùng ca ngoài" } },
+        { img: "assets/img/boneage-error-cdf.jpg", cap: { en: "Cumulative absolute-error distribution", vi: "Phân bố tích luỹ sai số tuyệt đối" } },
+        { img: "assets/img/boneage-distributions.jpg", cap: { en: "Image geometry and intensity, train vs test", vi: "Hình học và cường độ ảnh, train và test" } },
+        { img: "assets/img/boneage-age.jpg", cap: { en: "Bone-age distribution by sex", vi: "Phân bố tuổi xương theo giới tính" } },
+      ],
+      stack: ["PyTorch", "EfficientNet", "DICOM", "Streamlit", "pytest"],
+      links: [{ label: "GitHub", href: "https://github.com/quocbao271207/boneage-xray" }],
+    },
+    {
+      tag: "TQB-204",
+      key: "abc2027",
+      status: "in-progress",
+      statusNote: { en: "Own validation · results pending", vi: "Tự kiểm định · chờ kết quả" },
+      size: "empty",
+      title: { en: "ABC2027 TrackID3x3", vi: "ABC2027 TrackID3x3" },
+      line: { en: "Track and identify six 3x3 basketball players on court.", vi: "Theo dõi và nhận diện sáu cầu thủ bóng rổ 3x3 trên sân." },
+      meta: { en: "9th ABC Challenge · Nagoya Univ. × Kyushu Tech · results pending", vi: "ABC Challenge lần 9 · ĐH Nagoya × Kyushu Tech · chờ kết quả" },
+      cover: { chart: "abc2027" },
+      summary: {
+        en: "A tracking-by-identity solver built over four versions: detector + court homography, Hungarian matching, tracklet voting with kinematic gates, bipartite stitching and a contrastive ReID network. Official results arrive after the November deadline; the pocket stays open until then.",
+        vi: "Bộ giải theo dõi theo danh tính qua bốn phiên bản: detector + homography sân, ghép Hungarian, bỏ phiếu tracklet với cổng động học, ghép tracklet song phân và mạng ReID tương phản. Kết quả chính thức có sau hạn tháng 11; ô này để mở đến lúc đó.",
+      },
+      did: {
+        en: ["8-fold LOSO TI-HOTA: 85.78% (v1) → 93.26% → 97.41% → 99.99% (v4).", "Median error 8.24 cm → 1.45 cm (v3); 0 ID swaps in v4.", "Challenge audit 98.48% / 97.15%; held-out raw detector 93.48%."],
+        vi: ["TI-HOTA 8-fold LOSO: 85,78% (v1) → 93,26% → 97,41% → 99,99% (v4).", "Sai số trung vị 8,24 cm → 1,45 cm (v3); v4 không đổi nhầm ID.", "Audit cuộc thi 98,48% / 97,15%; detector thô held-out 93,48%."],
+      },
+      chart: "abc2027",
+      media: [],
+      stack: ["YOLO", "Homography", "Tracking", "ReID", "ResNet34"],
+      links: [],
+    },
+  ],
+
+  awards: [
+    {
+      tag: "TQB-301",
+      rank: { en: "1st Runner-Up", vi: "Á quân 1" },
+      short: { en: "1st Runner-Up", vi: "Á quân 1" },
+      title: { en: "International Quant Championship 2026 — Vietnam National Finals", vi: "International Quant Championship 2026 — Chung kết Việt Nam" },
+      by: "WorldQuant BRAIN · 11 Jul 2026",
+      cover: "assets/img/iqc-trophy.jpg",
+      focus: "58% 42%",
+      media: [
+        { img: "assets/img/iqc-trophy.jpg", cap: { en: "Certificate of achievement", vi: "Kỷ niệm chương" } },
+        { img: "assets/img/iqc-stage.jpg", cap: { en: "On stage at the Vietnam National Finals", vi: "Trên sân khấu Chung kết Việt Nam" } },
+        { img: "assets/img/iqc-pitch.jpg", cap: { en: "Final pitch: “We built a system to create alphas”", vi: "Thuyết trình chung kết: “We built a system to create alphas”" } },
+        { img: "assets/img/iqc-runnerup.jpg", cap: { en: "Vietnam Finals 1st Runner-Up", vi: "Á quân 1 Chung kết Việt Nam" } },
+        { img: "assets/img/iqc-badge.jpg", cap: { en: "Finalist badge — DSHCMUT2007", vi: "Thẻ chung kết — DSHCMUT2007" } },
+        { img: "assets/img/cert-iqc.jpg", cap: { en: "Certificate, signed by WorldQuant", vi: "Chứng nhận do WorldQuant ký" } },
+      ],
+    },
+    {
+      tag: "TQB-302",
+      rank: { en: "2nd Prize · 30,000,000 VND", vi: "Giải Nhì · 30.000.000 VNĐ" },
+      short: { en: "2nd Prize", vi: "Giải Nhì" },
+      title: { en: "Qualcomm Future Makers — Hack The Challenge 2026 (QVIC 2026)", vi: "Qualcomm Future Makers — Hack The Challenge 2026 (QVIC 2026)" },
+      by: { en: "Qualcomm × InnoEx · team VieGrand", vi: "Qualcomm × InnoEx · đội VieGrand" },
+      cover: "assets/img/qualcomm-prize.jpg",
+      focus: "52% 72%",
+      media: [
+        { img: "assets/img/qualcomm-prize.jpg", cap: { en: "Finale event — 1st Runner-Up", vi: "Đêm chung kết — Giải Nhì" } },
+        { img: "assets/img/qualcomm-stage.jpg", cap: { en: "Award ceremony", vi: "Lễ trao giải" } },
+        { img: "assets/img/cert-qualcomm.jpg", cap: { en: "Certificate: Phùng Minh Khoa, Trịnh Quốc Bảo, Lư Hoàng Trường Giang, Đoàn Nguyễn Minh Thư", vi: "Chứng nhận: Phùng Minh Khoa, Trịnh Quốc Bảo, Lư Hoàng Trường Giang, Đoàn Nguyễn Minh Thư" } },
+        { img: "assets/img/viegrand-build.jpg", cap: { en: "Building the VieGrand robot", vi: "Lắp robot VieGrand" } },
+      ],
+    },
+    {
+      tag: "TQB-303",
+      rank: { en: "Certificate of participation", vi: "Chứng nhận tham gia" },
+      title: { en: "Intel® AI Global Impact Festival 2026", vi: "Intel® AI Global Impact Festival 2026" },
+      by: { en: "Intel Corporation · project VieGrand AI Plus", vi: "Intel Corporation · dự án VieGrand AI Plus" },
+      cover: "assets/img/cert-intel.jpg",
+      media: [{ img: "assets/img/cert-intel.jpg", cap: { en: "Certificate of participation", vi: "Chứng nhận tham gia" } }],
+    },
+    {
+      tag: "TQB-304",
+      rank: { en: "Third Prize", vi: "Giải Ba" },
+      title: { en: "KMS Hackathon 2025 — programming contest, amateur group", vi: "KMS Hackathon 2025 — thi lập trình, bảng không chuyên" },
+      by: { en: "HCMUT Student Association · 10 Nov 2025", vi: "Hội Sinh viên ĐH Bách khoa · 10/11/2025" },
+      cover: "assets/img/cert-kms.jpg",
+      media: [{ img: "assets/img/cert-kms.jpg", cap: { en: "Certificate of commendation", vi: "Chứng nhận đạt giải" } }],
+    },
+    {
+      tag: "TQB-305",
+      rank: { en: "Round 2", vi: "Vòng 2" },
+      title: { en: "Bách Khoa Innovation 2026 — team Sankit", vi: "Bách Khoa Innovation 2026 — đội Sankit" },
+      by: { en: "HCMUT · 18 Jul 2026", vi: "ĐH Bách khoa · 18/07/2026" },
+      cover: "assets/img/sankit-round2.jpg",
+      media: [
+        { img: "assets/img/sankit-round2.jpg", cap: { en: "Round 2", vi: "Vòng 2" } },
+        { img: "assets/img/sankit-pitch.jpg", cap: { en: "Pitch", vi: "Thuyết trình" } },
+      ],
+    },
+  ],
+
+  honours: [
+    { en: "IELTS Academic 7.0 (CEFR C1)", vi: "IELTS Academic 7.0 (CEFR C1)" },
+    { en: "Outstanding Student Association member, 2025–2026 — HCMUT", vi: "Hội viên hoàn thành xuất sắc nhiệm vụ năm học 2025–2026 — ĐH Bách khoa" },
+    { en: "Outstanding Youth Union member, 2025–2026 — HCMUT", vi: "Đoàn viên hoàn thành xuất sắc nhiệm vụ năm học 2025–2026 — ĐH Bách khoa" },
+    { en: "Commendation, Mùa hè xanh 2026 volunteer campaign (7 days)", vi: "Giấy khen thành tích xuất sắc, Chiến dịch Mùa hè xanh 2026 (7 ngày)", img: "assets/img/cert-volunteer.jpg" },
+    { en: "CV writing & job interview skills course, 2026", vi: "Khoá kỹ năng viết CV và phỏng vấn xin việc, 2026" },
+  ],
+
+  log: [
+    { when: "2026", role: { en: "AI Engineer", vi: "Kỹ sư AI" }, org: "VieGrand", what: { en: "On-device “Vy ơi” wake word; data validation for health-risk models.", vi: "Wake word “Vy ơi” trên thiết bị; kiểm định dữ liệu cho mô hình nguy cơ sức khoẻ." } },
+    { when: "05–11 / 2026", role: { en: "Solo developer", vi: "Lập trình viên độc lập" }, org: "OneVoice AI Challenge 2026", what: { en: "Offline VI ⇄ EN medical interpreter on Qualcomm QCS6490.", vi: "Phiên dịch y khoa Việt ⇄ Anh ngoại tuyến trên Qualcomm QCS6490." } },
+    { when: "2026", role: { en: "Web developer", vi: "Lập trình viên web" }, org: "English House (Ms. Van)", what: { en: "Student portal of a Next.js + NestJS learning platform.", vi: "Cổng học viên của nền tảng học Next.js + NestJS." } },
+    { when: "2025 – 2026", role: { en: "Research & competitions", vi: "Nghiên cứu & thi đấu" }, org: "HCMUT teams", what: { en: "IEEE paper, ISAS 2026 paper, ABC 2026 & ABC2027, Viettel AI Race, IQC, Hokkaido collaboration.", vi: "Bài IEEE, bài ISAS 2026, ABC 2026 & ABC2027, Viettel AI Race, IQC, hợp tác Hokkaido." } },
+    { when: { en: "Current", vi: "Hiện tại" }, role: { en: "B.Sc. Data Science", vi: "Cử nhân Khoa học Dữ liệu" }, org: "HCMUT — VNU-HCM", what: { en: "Faculty of Applied Science, Ho Chi Minh City University of Technology.", vi: "Khoa Khoa học Ứng dụng, Trường ĐH Bách khoa — ĐHQG-HCM." } },
+  ],
+};
+
+/* Real numbers behind the charts (source files noted). */
+const CHART_DATA = {
+  // Onevoice README / eval reports — PhoWhisper-small LoRA rank sweep, eval WER (%)
+  onevoiceWer: {
+    unit: "WER %", lowerIsBetter: true, gate: { value: 19, label: { en: "clinical gate ≤ 19%", vi: "ngưỡng lâm sàng ≤ 19%" } },
+    rows: [["LoRA r8", 43.1929], ["LoRA r16", 33.9176], ["LoRA r32", 31.2608], ["Full FT", 28.5726]],
   },
-  {
-    title: "VieGrand — “Vy ơi” Wake Word",
-    meta: "VieGrand · Elderly home-care",
-    badge: "Product",
-    categories: ["product", "speech", "medical"],
-    short:
-      "On-device Vietnamese wake-word engine for an elderly-care ecosystem of AI cameras, smartwatches and a family app.",
-    summary:
-      "VieGrand watches over older people at home: it detects falls and anomalies, alerts family and tracks health trends while keeping sensitive data local. I built the “Vy ơi” wake-word model that lets elders call the assistant hands-free, and prepared data for the health-risk models.",
-    highlights: [
-      "Voice-disjoint 5-fold evaluation: 97.44% precision, 86.77% recall at a 0.83% false-positive rate.",
-      "0 / 128 false triggers on a stress set of everyday conversation.",
-      "Trained on 3,136 clips across 13 voice domains; shipped as an ONNX Runtime model inside the Android app.",
-      "Validated parquet datasets feeding the server-side health-risk models.",
-    ],
-    facts: [
-      ["Role", "Wake-word engine & data pipeline"],
-      ["Platform", "Android · Edge AI"],
-      ["Organisation", "VIEGRAND-PRODUCT"],
-      ["Year", "2026"],
-    ],
-    tags: ["Keyword spotting", "ONNX Runtime", "Android", "Python", "Data validation"],
-    images: [
-      { src: "assets/img/viegrand-family.jpg", alt: "VieGrand family dashboard showing an alert and recent health activity" },
-      { src: "assets/img/viegrand-vy.jpg", alt: "“Vy” assistant ready to listen after the wake word" },
-      { src: "assets/img/viegrand-health.jpg", alt: "Elder health overview screen" },
-    ],
-    links: [{ label: "VieGrand on GitHub", href: "https://github.com/VIEGRAND-PRODUCT" }],
+  // viegrand-wake-word evaluation, v3 voice-disjoint 5-fold
+  // viegrand-wake-word reports — conversation v3 (shipped), voice-disjoint 5-fold, synthetic speech
+  wakeword: { unit: "%", note: { en: "evaluated on synthetic speech", vi: "đo trên giọng nói tổng hợp" }, rows: [["Precision", 96.19], ["Recall", 88.06], ["False-pos. rate", 1.46]] },
+  // Hokkaido LSTM_TCN_experiment/experiment_matrix_results.md — 7 merged classes, HMM accuracy
+  hokkaido: {
+    unit: "HMM acc. %",
+    rows: [["Hybrid TCN", 71.2], ["TCN + VideoMAE", 68.2], ["Hybrid LSTM", 68.07], ["LSTM + VideoMAE", 67.67], ["LSTM + Pose", 62.27], ["TCN + Pose", 58.08]],
   },
-  {
-    title: "ABC2027 TrackID3x3",
-    meta: "9th ABC Challenge · Nagoya Univ. × Kyushu Tech",
-    badge: "In progress",
-    categories: ["research", "vision"],
-    short:
-      "Detect, track and identify all six players in 3x3 basketball footage and map them onto court coordinates.",
-    summary:
-      "A tracking-by-identity solver that went through seven versions: detector + court homography, Hungarian matching, tracklet voting with kinematic gates, bipartite tracklet stitching and a contrastive ReID network for jersey identity.",
-    highlights: [
-      "Solver v4 reaches 99.99% TI-HOTA in 8-fold leave-one-sequence-out validation with zero ID switches.",
-      "97–98% TI-HOTA on the challenge audit sequences, 93.5% with a raw held-out detector.",
-      "ResNet34 IDNet with contrastive ReID: 99.97% crop-level identity accuracy.",
-      "Challenge videos kept strictly evaluation-only to avoid leakage into training.",
-    ],
-    facts: [
-      ["Competition", "ABC2027 TrackID3x3"],
-      ["Conference", "ABC 2027 · Sydney, Jan 2027"],
-      ["Metric", "TI-HOTA"],
-    ],
-    tags: ["YOLO", "Multi-object tracking", "Homography", "ReID", "ResNet34"],
-    images: [{ src: "assets/img/abc2027-cover.svg", alt: "Illustration: six tracked players on a 3x3 basketball half court" }],
-    links: [],
+  // ISAS paper revision figure — mean Macro-F1
+  isas: { unit: "Macro-F1", rows: [["Raw ExtraTrees", 0.351], ["+ 11 s smoothing", 0.4113]], max: 0.5 },
+  // ABC2027/tracking.md — 8-fold LOSO mean TI-HOTA by solver version
+  abc2027: { unit: "TI-HOTA %", note: { en: "8-fold LOSO, own validation · challenge results pending", vi: "8-fold LOSO, tự kiểm định · chờ kết quả cuộc thi" }, rows: [["v1", 85.78], ["v2", 93.26], ["v3", 97.41], ["v4", 99.99]], min: 80 },
+  // Viettel out/SUBMISSIONS.md + out/RESULTS.csv — logged submission scores in order
+  viettel: {
+    unit: { en: "score", vi: "điểm" },
+    series: [0.0773, 3.9814, 8.9788, 15.47, 24.19, 27.26, 31.1438, 35.2306, 36.4914, 36.7829, 36.9103, 37.0865, 37.1974, 37.3091, 37.3972, 38.2704, 38.646],
   },
-  {
-    title: "ISAS 2026 — BLE Indoor Localisation",
-    meta: "ISAS Challenge 2026 · Co-authored paper",
-    badge: "Paper",
-    featured: true,
-    categories: ["research", "medical"],
-    short:
-      "Room-level localisation of caregivers in a nursing home from sparse, imbalanced BLE beacon signals.",
-    summary:
-      "25 fixed beacons, ~22 rooms and more than 90% missing readings per second. We built an auditable pipeline — class-balanced ExtraTrees plus an 11-second centred probability smoothing — and rejected heavier models (including a TCN hybrid) that did not transfer across days.",
-    highlights: [
-      "Temporal smoothing lifts mean Macro-F1 from 0.351 to 0.411 across cross-day folds.",
-      "Strict forward-in-time validation (Apr 10 → 11, Apr 10–11 → 12) instead of random splits.",
-      "Every rejected alternative is documented with its evidence, keeping the final pipeline auditable.",
-      "Paper: “An Auditable BLE Indoor Location-Recognition Pipeline under Sparse, Imbalanced and Temporally Dependent RSSI”.",
-    ],
-    facts: [
-      ["Role", "Co-author"],
-      ["Venue", "ISAS 2026 · J. Phys.: Conf. Ser. (IOP)"],
-      ["Organiser", "ABC Sozolab"],
-      ["Data", "25 BLE beacons · nursing-home floor"],
-    ],
-    tags: ["scikit-learn", "ExtraTrees", "Time series", "pandas", "LaTeX"],
-    images: [
-      { src: "assets/img/isas-macro-f1.jpg", alt: "Macro-F1 per fold: raw argmax vs centred 11-second smoothing" },
-      { src: "assets/img/isas-system.jpg", alt: "Challenge data-collection system: BLE beacons, Fonlog app and server" },
-      { src: "assets/img/isas-floorplan.jpg", alt: "Floor plan of the facility with installed beacons" },
-      { src: "assets/img/isas-per-room.jpg", alt: "Per-room F1 on fold 2" },
-      { src: "assets/img/isas-confusion.jpg", alt: "Confusion matrices before and after smoothing" },
-    ],
-    links: [],
-  },
-  {
-    title: "Hokkaido ES Coach",
-    meta: "Research collaboration · Hokkaido University",
-    categories: ["medical", "vision", "research"],
-    short:
-      "Real-time, local-first coaching for endotracheal-suction training using pose estimation and sequence models.",
-    summary:
-      "Trainees practise airway suctioning while the system tracks each step on camera, checks the 15-second-per-suction safety rule and produces an educator-reviewed report. Video never leaves the machine: only downscaled frames go to a loopback worker.",
-    highlights: [
-      "YOLOv8n-Pose → Pose LSTM/TCN → HMM pipeline exported to ONNX for real-time inference.",
-      "Best hybrid TCN (VideoMAE + pose) reaches 71.2% accuracy over 7 activity classes.",
-      "Timeline of coaching moments, safety warnings and an evidence-linked post-session review.",
-      "Optional self-hosted LLM (Qwen2.5-7B via vLLM) for grounded, rubric-based feedback.",
-    ],
-    facts: [
-      ["Type", "Team research project"],
-      ["Domain", "Clinical skills training"],
-      ["Deployment", "Local-first · Docker"],
-    ],
-    tags: ["YOLOv8-Pose", "LSTM / TCN", "HMM", "ONNX Runtime", "vLLM", "OpenCV"],
-    images: [
-      { src: "assets/img/hokkaido-report.jpg", alt: "Post-session review: video timeline, coaching moments and feedback" },
-      { src: "assets/img/hokkaido-live.jpg", alt: "Live session view with the procedure step strip" },
-      { src: "assets/img/hokkaido-setup.jpg", alt: "Session setup screen" },
-    ],
-    links: [],
-  },
-  {
-    title: "Bone-Age X-ray",
-    meta: "Medical imaging research",
-    categories: ["medical", "vision", "research"],
-    short:
-      "Bone-age regression from hand X-rays with leakage-safe splits and external validation on hospital data.",
-    summary:
-      "Trained on the RSNA dataset, then validated on hospital DICOMs with fixed patient-level splits and paired comparisons — the goal being numbers that survive contact with a real hospital, not just a leaderboard.",
-    highlights: [
-      "6.64-month MAE on 12,609 RSNA images (EfficientNet-B0, 512 px, 5-fold).",
-      "External hospital validation: 9.03-month MAE on standardised images (147 cases).",
-      "Paired same-case comparison with 95% confidence intervals instead of single-number claims.",
-      "Reproducible repo (uv, ruff, pytest) with a Streamlit research UI. Research use only.",
-    ],
-    facts: [
-      ["Role", "Author"],
-      ["Model", "EfficientNet-B0"],
-      ["Validation", "External hospital cohort"],
-    ],
-    tags: ["PyTorch", "EfficientNet", "DICOM", "Streamlit", "pytest"],
-    images: [
-      { src: "assets/img/boneage-cover.svg", alt: "Illustration: hand X-ray scan with MAE badge" },
-      { src: "assets/img/boneage-distributions.jpg", alt: "Image geometry and intensity distributions, train vs test" },
-      { src: "assets/img/boneage-age.jpg", alt: "Bone-age distribution by sex" },
-    ],
-    links: [{ label: "View repository", href: "https://github.com/quocbao271207/boneage-xray" }],
-  },
-  {
-    title: "Viettel AI Race 2026",
-    meta: "Viettel AI Race · Medical NLP",
-    categories: ["research", "speech", "medical"],
-    short:
-      "Offline extraction of drugs and diagnoses from Vietnamese clinical notes, linked to RxNorm and ICD-10-CM codes.",
-    summary:
-      "Track 2, “Ontological Reasoning in Medical Knowledge Retrieval”. A GPU-free, API-free pipeline: section parsing with exact character offsets, large offline gazetteers and a rebuilt local scorer to iterate on submissions quickly.",
-    highlights: [
-      "Offline gazetteers: 74,719 ICD-10-CM codes and ~42k RxNorm concepts (SCD, IN, SBD).",
-      "Exact character offsets — 2,217 / 2,217 spans aligned with the source text.",
-      "Runs in about one second per batch, no GPU and no external API calls.",
-      "Local scorer reconstruction enabled dozens of controlled submission experiments.",
-    ],
-    facts: [
-      ["Role", "Core developer"],
-      ["Competition", "Viettel AI Race 2026 · Track 2"],
-      ["Constraint", "Fully offline"],
-    ],
-    tags: ["Python", "NER", "Entity linking", "RxNorm", "ICD-10-CM", "SapBERT"],
-    images: [{ src: "assets/img/viettel-cover.svg", alt: "Illustration: entity spans highlighted in clinical text" }],
-    links: [{ label: "View repository", href: "https://github.com/quocbao271207/Viettel" }],
-  },
-  {
-    title: "English House Learning Platform",
-    meta: "English House (Ms. Van) · EdTech",
-    badge: "Product",
-    featured: true,
-    categories: ["product"],
-    short:
-      "Full learning platform for an English centre: student and teacher portals, an exam bank, CEFR vocabulary and learning games.",
-    summary:
-      "A production platform with a student portal, a teacher/admin app and a shared API. It covers exam authoring in 12 formats with Paper, Quiz and IELTS modes, CEFR A1–C2 vocabulary with five study modes, and two games — Word Runner and Spelling Squadron.",
-    highlights: [
-      "Exam bank with 12 question formats and three delivery modes.",
-      "CEFR A1–C2 vocabulary: 30 themed seed decks and 300 starter cards.",
-      "Gamified practice with Spelling Squadron and Word Runner.",
-      "Premium access-grant model and end-to-end tests ahead of release.",
-    ],
-    facts: [
-      ["Role", "Team member · student web"],
-      ["Organisation", "English-House-MsVan"],
-      ["Year", "2026"],
-    ],
-    tags: ["Next.js", "React 19", "TypeScript", "Tailwind", "NestJS", "Prisma", "PostgreSQL"],
-    images: [
-      { src: "assets/img/englishhouse-spelling.jpg", alt: "Spelling Squadron vocabulary game" },
-      { src: "assets/img/englishhouse-exam.jpg", alt: "Student exam runner" },
-      { src: "assets/img/englishhouse-authoring.jpg", alt: "Teacher exam authoring screen" },
-    ],
-    links: [{ label: "Organisation on GitHub", href: "https://github.com/English-House-MsVan" }],
-  },
-  {
-    title: "Hand-Hygiene Monitoring",
-    meta: "ICU computer vision · Team research",
-    categories: ["medical", "vision", "research"],
-    short:
-      "Camera-based monitoring of the WHO “5 Moments” hand-hygiene rules in intensive-care units.",
-    summary:
-      "A 30 FPS camera feeds three detection modules — person–person contact, person–equipment contact and hand-washing — whose events drive a sterile/unsterile state machine that flags WHO violations in real time.",
-    highlights: [
-      "Owned one of the three contact-detection modules (YOLO11-pose + BoT-SORT tracking).",
-      "Design targets: ≥ 90% precision and ≥ 88% recall at ≥ 30 FPS for the module.",
-      "Finite-state machine turns detections into compliance events and reports.",
-    ],
-    facts: [
-      ["Type", "3-person research project"],
-      ["Standard", "WHO 5 Moments"],
-      ["Status", "Research prototype"],
-    ],
-    tags: ["YOLO11-pose", "BoT-SORT", "SAM", "ST-GCN", "State machine"],
-    images: [{ src: "assets/img/handwash-concept.jpg", alt: "Concept illustration: hand-pose detection" }],
-    links: [{ label: "View repository", href: "https://github.com/quocbao271207/handwash-master" }],
-  },
-  {
-    title: "Multimodal HAR — ABC 2026",
-    meta: "ABC Challenge 2026 · Wearables",
-    categories: ["research"],
-    short:
-      "Disentangling confusable actions in multimodal human-activity recognition from inertial, EMG and EEG signals.",
-    summary:
-      "Work on the WEAR inertial dataset and NinaPro EMG bio-signals: visualising sensor streams, extracting TSFEL features and proposing a stability-driven feature-selection framework for actions that models routinely confuse.",
-    highlights: [
-      "Stability-driven feature selection to separate easily confused activities.",
-      "Integrated EMG-IMU and EEG signals in one feature pipeline.",
-      "Exploratory visualisation of arm / leg inertial sensors per subject.",
-    ],
-    facts: [
-      ["Competition", "ABC Challenge 2026"],
-      ["Data", "WEAR · NinaPro"],
-    ],
-    tags: ["Python", "TSFEL", "scikit-learn", "Signal processing", "Jupyter"],
-    images: [
-      { src: "assets/img/har-concept.jpg", alt: "Concept illustration: multimodal activity sensing" },
-      { src: "assets/img/har-wear.jpg", alt: "WEAR inertial-sensor signals for one subject (arm)" },
-    ],
-    links: [],
-  },
-  {
-    title: "Sankit",
-    meta: "Backend & GPS modelling",
-    categories: ["product"],
-    short:
-      "Backend infrastructure and GPS models that optimise tracking and routing.",
-    summary:
-      "I designed and implemented the backend and developed GPS-based predictive models to improve tracking accuracy and routing decisions.",
-    highlights: [
-      "Designed the backend services and data model.",
-      "Built GPS / spatial predictive models for tracking and routing.",
-    ],
-    facts: [["Role", "Backend & GPS model developer"]],
-    tags: ["FastAPI", "Spatial modelling", "SQL"],
-    images: [{ src: "assets/img/sankit-concept.jpg", alt: "Concept illustration: GPS tracking and routing" }],
-    links: [],
-  },
-  {
-    title: "International Quant Competition",
-    meta: "Quantitative research",
-    categories: ["research"],
-    short:
-      "Financial modelling and machine-learning strategies for an international quantitative-research competition.",
-    summary:
-      "Developed predictive models and trading-signal research using statistical and machine-learning techniques under the competition's evaluation rules.",
-    highlights: [
-      "Statistical and ML-based predictive models for financial time series.",
-      "Strategy research and backtesting discipline.",
-    ],
-    facts: [["Field", "Quantitative finance"]],
-    tags: ["Python", "Time series", "XGBoost", "Backtesting"],
-    images: [{ src: "assets/img/iqc-cover.svg", alt: "Illustration: candlestick chart with model signal" }],
-    links: [],
-  },
-];
+};
