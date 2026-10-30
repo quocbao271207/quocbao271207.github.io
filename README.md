@@ -1,18 +1,32 @@
-# My Personal Portfolio
-A simple, professional and  mobile friendly portfolio webpage coded using HTML, CSS and JavaScript.
-I created my own JSON data for my projects done.
-Kindly Check it out :)
+# quocbao271207.github.io
 
-LIVE Link: [View Now](https://jumanjigobez.github.io/personal_portfolio/)
+Personal portfolio of **Trịnh Quốc Bảo** — AI engineer and Data Science student at HCMUT.
 
-## Screenshots
-![portfolio](https://user-images.githubusercontent.com/73429193/187241803-749486eb-ccba-4b31-8025-c24aeef3b638.png)
-![mobile design](https://github.com/Jumanjigobez/personal_portfolio/assets/73429193/69ca0d10-43b8-440f-b1b2-ee5bdae29d38)
+**Live:** https://quocbao271207.github.io/
 
+## Stack
 
-Please Also Follow me in:
-- Github - [@jumanjigobez](https://www.github.com/jumanjigobez)
-- Instagram - [@jumanjicasilas](https://www.instagram.com/jumanjicasilas)
-- Youtube - [@Jumanji_Dev](https://www.youtube.com/channel/UCw3RDC7Nn5lzU15-HdOC6WA)
+Plain HTML, CSS and JavaScript — no build step, no framework. Served directly by GitHub Pages.
 
-Thanks in Advance for being my follower and giving a Star :)
+```
+index.html            page structure and static sections
+assets/css/main.css   design tokens (dark / light), layout, components, animations
+assets/js/data.js     project case studies (cards, modal content, filters)
+assets/js/main.js     theme, navigation, filters, modal gallery, reveal effects, background canvas
+assets/img/           optimised project images and generated SVG covers
+```
+
+## Updating content
+
+- **Add or edit a project:** append an object to `PROJECTS` in `assets/js/data.js`
+  (`title`, `meta`, `categories`, `short`, `summary`, `highlights`, `facts`, `tags`, `images`, `links`).
+  Set `featured: true` to make the card span two columns.
+- **Images:** export at ≤ 1400 px wide as JPEG (~80% quality) into `assets/img/`.
+
+## Local preview
+
+```bash
+python -m http.server 5500
+```
+
+Then open http://localhost:5500.
