@@ -758,3 +758,21 @@ a.pocket:focus-visible .pocket__item { transform: translateY(-8px); filter: drop
 .tag__id { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; margin-left: auto; }
 .pockets .pocket__item { justify-content: flex-start; }
 .pockets .pocket .tag { margin-top: 0; }
+
+/* whole images, no cropping: boxes follow each image's own aspect */
+.pockets { grid-auto-rows: auto; align-items: start; }
+.pockets > * { grid-row: auto !important; }
+.pockets .pocket__media { flex: none; aspect-ratio: 16 / 10; background: #0d0e0f; }
+.pockets .pocket__media img { object-fit: contain; object-position: center; }
+.pockets .pocket__media--fit { background: #fff; }
+.size-photo { grid-column: span 7; }
+.size-spec { grid-column: span 5; }
+@media (max-width: 1100px) { .size-photo, .size-spec { grid-column: span 6; } }
+.pockets .phone .pocket__media { aspect-ratio: auto; height: 100%; }
+.pockets .device .pocket__media { aspect-ratio: 16 / 10; }
+.size-photo { grid-column: span 5; }
+.size-spec { grid-column: span 4; }
+.size-photo, .size-spec { grid-column: span 6; }
+.size-photo { grid-column: span 5; }
+.size-spec { grid-column: span 7; }
+@media (max-width: 1100px) { .size-photo, .size-spec { grid-column: span 6; } }

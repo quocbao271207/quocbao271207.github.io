@@ -132,10 +132,21 @@
     $(".latch").dataset.lang = lang;
   }
 
+  // Photos, screenshots and figures are shown whole: each box takes the image's own aspect ratio.
+  function fitMedia(root = document) {
+    $$(".pockets .pocket__media img", root).forEach((img) => {
+      const size = IMG_SIZE[img.getAttribute("src")];
+      if (size) { img.parentElement.style.aspectRatio = `${size[0]} / ${size[1]}`; return; }
+      const fit = () => { if (img.naturalWidth) img.parentElement.style.aspectRatio = `${img.naturalWidth} / ${img.naturalHeight}`; };
+      if (img.complete) fit(); else img.addEventListener("load", fit, { once: true });
+    });
+  }
+
   function renderAll() {
     applyStatic();
     renderBase();
     renderTrays();
+    fitMedia();
     observeVideos();
     onScroll();
   }
